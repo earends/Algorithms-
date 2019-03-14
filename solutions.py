@@ -1,4 +1,7 @@
 class Solution:
+    '''
+    keep a dictionary of values
+    '''
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         #create a set to hold all of the values that we have seen 
         s = {}
@@ -51,5 +54,29 @@ class Solution:
             ans.val = r
             
         return tempans
+    '''
+    keep track of the start, the end will be tracked by your iterations
+    always update the dictionary and max_len each time with values previously found
+    '''
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # we are going to store each character and when we saw it in a dictionary 
+        chars = {}
+        # we are going to constantly be calculating the max_len
+        max_len = 0
+        start = 0
+        for i in range(len(s)):
+            #check to see if char is in dictionary 
+            if s[i] in chars:
+                #make sure we are not updating start to pre start
+                start = max(start,chars[s[i]] + 1)
+            #no matter what we are either adding or updating to the dictionary
+            chars[s[i]] = i
+            max_len = max(max_len,i - start + 1)
+        
+        return max_len
     
     
