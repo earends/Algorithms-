@@ -79,4 +79,40 @@ class Solution:
         
         return max_len
     
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        
+        #look for first non white space character
+        #takes an optional plus or minus sign
+        #followed by as manu numerical digits as possible 
+        # then any non number after that is considered bad
+        
+        nums = {'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
+        sign = None
+        ans = 0
+        num_or_sign = False
+        for i in range(len(str)):
+            if str[i] in nums or str[i] == '-' or str[i] == '+' or str[i] == ' ':
+                #check for signs first
+                if str[i] == ' ':
+                    continue
+                num_or_sign = True
+                if str[i] == '-':
+                    sign = '-'
+                elif str[i] == '+':
+                    sign = '+'
+                else:
+                    ans = (ans * 10) + nums[str[i]]
+            else:
+                if num_or_sign == False:
+                    return 0
+        if sign != None:
+            if sign == "-":
+                ans = ans * -1
+        
+        return ans
+    
     
