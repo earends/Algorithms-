@@ -166,4 +166,29 @@ class Solution:
             ans = ans + s[e]
         return ans
     
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        ans = []
+        for i in range(len(nums)):
+            temp = self.twoSumForThreeSum(nums,0-nums[i],i)
+            if temp != None:
+                temp.insert(0,nums[i])
+                ans.append(temp)
+        return ans
+        
+    
+    def twoSumForThreeSum(self,nums,target):
+        s = set()
+        for i in range(len(nums)):
+            if  index == i:
+                continue
+            if target - nums[i] in s:
+                return [target - nums[i],nums[i]]
+            else:
+                s.add(nums[i])
+        return None
+    
     
