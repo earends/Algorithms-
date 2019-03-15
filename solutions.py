@@ -115,4 +115,55 @@ class Solution:
         
         return ans
     
+    '''
+    Think of recursion, think of the iterations luke
+    '''
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        
+        #keep track of start and max_len 
+        #store combos in array 
+        arr = [[0 for a in range(len(s))] for b in range(len(s))]
+        max_len = 0
+        start = 0
+        #all single chars are palindromes 
+        for c in range(len(s)):
+            arr[c][c] = True
+            max_len = 1
+        
+        #check for all pal's len 2 
+        for d in range(len(s) - 1):
+            if s[d] == s[d + 1]:
+                #mark the array as True
+                start = d
+                arr[d][d+1] = True
+                max_len = 2
+        
+        k = 3 #check for palindromes len 3 and above 
+        n = len(s)
+        while k <= n:
+            
+            i = 0 #reset 0 to each time so you can start a beginning
+            
+            while i < n-k + 1:
+                j = i + k - 1 # j needs to start 3 spaces out 
+                #check to make sure the iteration before hand is 
+                if arr[i + 1][j -1] and s[i] == s[j]:
+                    arr[i][j] = True
+                    
+                    if k >= max_len:
+                        start = i 
+                        max_len = k
+                i += 1
+            k += 1
+        
+        #print the answer
+        ans = ''
+        for e in range(start,max_len + start):
+            ans = ans + s[e]
+        return ans
+    
     
