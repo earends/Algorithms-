@@ -191,4 +191,31 @@ class Solution:
                 s.add(nums[i])
         return None
     
+    def letterCombinations(self, digits):
+        #error checking
+        if len(digits) < 1:
+            return []
+        #create dctionary to hold numbers 
+        phone = {}
+        phone['2'] = 'abc'
+        phone['3'] = 'def'
+        phone['4'] = 'ghi'
+        phone['5'] = 'jkl'
+        phone['6'] = 'mno'
+        phone['7'] = 'pqrs'
+        phone['8'] = 'tuv'
+        phone['9'] = 'wxyz'
+        result = []
+        
+        self.combos(phone,digits,0,result,'')
+        return result
+    
+    def combos(self,phone,digits,index,result,current_val):
+        if index == len(digits):
+            return result.append(current_val)
+        
+        num = phone.get(digits[index]) #ex. abc
+        for i in range(len(num)):
+            self.combos(phone,digits,index + 1,result,current_val + num[i])
+    
     
