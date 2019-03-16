@@ -243,4 +243,43 @@ class Solution:
             return False
         return True
     
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        if l1 == None and l2 == None:
+            return None
+        l3 = ListNode(None)
+        #keep pointer to head
+        temp = l3 
+        while l1 != None and l2 !=None:
+            #if l3 val is None first case
+            if l3.val != None:
+                l3.next = ListNode(None)
+                l3 = l3.next
+            #compare values and assign l3 val
+            if l1.val < l2.val:
+                l3.val = l1.val
+                l1 = l1.next
+            else:
+                l3.val = l2.val
+                l2 = l2.next
+        #get the last ends
+        while l1 != None:
+            if l3.val != None:
+                l3.next = ListNode(None)
+                l3 = l3.next
+            l3.val = l1.val
+            l1 = l1.next
+        while l2 != None:
+            if l3.val != None:
+                l3.next = ListNode(None)
+                l3 = l3.next
+            l3.val = l2.val
+            l2 = l2.next
+        
+        return temp
+    
     
