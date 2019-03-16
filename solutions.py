@@ -9,6 +9,8 @@ Algorithms included:
 -letter combinations
 -valid parenthesis
 -merge two sorted lists
+-merge k sorted lists
+-level order
 '''
 class Solution:
     '''
@@ -324,5 +326,23 @@ class Solution:
                 lists[smallestIndex] = lists[smallestIndex].next
             
         return temp
+    
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        arr = []
+        if root:
+            self.level(root,0,arr)
+        
+        return arr
+            
+    def level(self,root, height, arr):
+        if len(arr) == height:
+            arr.append([])
+        if root != None:
+            arr[height].append(root.val)
+        if root.left:
+            self.level(root.left,height + 1,arr)
+        if root.right:
+            self.level(root.right,height + 1,arr)
+            
     
     
