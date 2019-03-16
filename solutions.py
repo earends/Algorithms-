@@ -295,3 +295,34 @@ class Solution:
         return temp
     
     
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if len(lists) == 0:
+            return lists
+        newList = ListNode(None)
+        temp = newList
+        listsHaveItems = True
+        smallest = 0
+        while smallest != None:
+            smallest = None
+            smallestIndex = None
+            #O of len(Lists)
+            for i in range(len(lists)):
+                if lists[i] == None:
+                    continue
+                if smallest == None or lists[i].val < smallest:
+                    smallest = lists[i].val
+                    smallestIndex = i
+            #if no smallest all lists are empty return None
+            if smallest != None:
+                #check to see if beginning of new list
+                if newList.val != None:
+                    newList.next = ListNode(None)
+                    newList = newList.next
+                #add smallest to list
+                newList.val = smallest
+                #iterate list smalltest came from 
+                lists[smallestIndex] = lists[smallestIndex].next
+            
+        return temp
+    
+    
