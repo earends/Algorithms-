@@ -217,5 +217,30 @@ class Solution:
         num = phone.get(digits[index]) #ex. abc
         for i in range(len(num)):
             self.combos(phone,digits,index + 1,result,current_val + num[i])
+            
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        #create a stack to hold the order of elements
+        stck = []
+        #create a dictionary to check 
+        d = {')':'(',']':'[','}':'{'}
+        
+        for i in range(len(s)):
+            #check for closing bracket
+            if s[i] in d:
+                #check to make sure value opening matches closing
+                if len(stck) == 0 or stck.pop() != d[s[i]]:
+                    return False
+                
+            else:
+                #add to stack 
+                stck.append(s[i])
+        #check to make sure stack is empty 
+        if len(stck) != 0:
+            return False
+        return True
     
     
