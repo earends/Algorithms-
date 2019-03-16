@@ -1,3 +1,15 @@
+'''
+Algorithms included:
+-twosum
+-add two nums
+-longest substring without repeating chars 
+-longest palindromic substring
+-string to integer atoi
+-3sum wihtout distinct
+-letter combinations
+-valid parenthesis
+-merge two sorted lists
+'''
 class Solution:
     '''
     keep a dictionary of values
