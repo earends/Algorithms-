@@ -343,6 +343,38 @@ class Solution:
             self.level(root.left,height + 1,arr)
         if root.right:
             self.level(root.right,height + 1,arr)
+    '''
+    trapping rain water
+    solution incomplete
+    idea is solid
+    '''
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        ans = 0
+        #cant trap any on last and first element
+        for i in range(1,len(height) - 1):
+            temp = self.getMaxLeftRight(height,i)
+            if temp[0] != -1 and temp[1] != -1:
+                ans += min(temp[0],temp[1]) - height[i]
+        return ans
+            
+    def getMaxLeftRight(self,arr,index):
+        left = index - 1
+        leftMax = -1
+        right = index + 1
+        rightMax = -1
+        while left > 0:
+            if arr[left] > arr[index]:
+                leftMax = max(leftMax,arr[left])
+                left -= 1
+        while right < len(arr):
+            if arr[right] > arr[index]:
+                rightMax = max(rightMax,arr[right])
+                right += 1
+        return [leftMax,rightMax]
             
     
     
