@@ -375,6 +375,25 @@ class Solution:
                 rightMax = max(rightMax,arr[right])
                 right += 1
         return [leftMax,rightMax]
+    
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        l = len(matrix[0])
+        for i in range(l//2): 
+            #start at i for depth
+            for j in range(i,l-i-1):
+                t = matrix[i][j]
+                #bottom left goes to top left
+                matrix[i][j] = matrix[l-j-1][i]
+                #bottom right goes to bottom left
+                matrix[l-j-1][i] = matrix[l-i-1][l-j-1]
+                #top right goes to bottom right
+                matrix[l-i-1][l-j-1] = matrix[j][l-i-1]
+                #top left goes to top right
+                matrix[j][l-i-1] = t
             
     
     
