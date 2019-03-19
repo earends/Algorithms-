@@ -13,7 +13,7 @@ Algorithms included:
 -level order
 - subset 
 - rotate 
-
+- group annograms
 '''
 class Solution:
     '''
@@ -407,5 +407,23 @@ class Solution:
                     if (i & (1 << j)) > 0:
                         temp.append(nums[j])
                 ans.append(temp)
-            return ans    
-    
+            return ans  
+        
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = {}
+        ans = []
+        '''
+        sorted: [unsorted]
+        '''
+        for i in range(len(strs)):
+            temp = ''.join(sorted(strs[i]))
+                
+            if temp in d:
+                d[temp].append(strs[i])
+            else:
+                d[temp]= [strs[i]]
+                
+        #iterate through dictionary 
+        for x in d:
+            ans.append(d[x])
+        return ans
