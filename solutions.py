@@ -11,6 +11,9 @@ Algorithms included:
 -merge two sorted lists
 -merge k sorted lists
 -level order
+- subset 
+- rotate 
+
 '''
 class Solution:
     '''
@@ -395,5 +398,14 @@ class Solution:
                 #top left goes to top right
                 matrix[j][l-i-1] = t
             
-    
+    def subset(arr):                  
+        max_len = 2 ** len(nums)
+            ans = []
+            for i in range(max_len):
+                temp = []
+                for j in range(len(nums)):
+                    if (i & (1 << j)) > 0:
+                        temp.append(nums[j])
+                ans.append(temp)
+            return ans    
     
