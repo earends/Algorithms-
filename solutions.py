@@ -14,6 +14,7 @@ Algorithms included:
 - subset 
 - rotate 
 - group annograms
+-validate bst
 '''
 class Solution:
     '''
@@ -427,3 +428,16 @@ class Solution:
         for x in d:
             ans.append(d[x])
         return ans
+    
+    def isValidBST(self, root: TreeNode) -> bool:
+    
+        return self.isBST(root,-132312414242342,34242432423424)
+    def isBST(self,Node,mini,maxi):
+        if not Node:
+            return True
+        #first condition cant be false
+        #set big enough values
+        if Node.val < mini or Node.val > maxi: 
+            return False
+
+        return (self.isBST(Node.left, mini, Node.val-1) and self.isBST(Node.right, Node.val+1, maxi))
