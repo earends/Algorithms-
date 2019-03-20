@@ -15,6 +15,7 @@ Algorithms included:
 - rotate 
 - group annograms
 -validate bst
+-maxprofit
 '''
 class Solution:
     '''
@@ -441,3 +442,15 @@ class Solution:
             return False
 
         return (self.isBST(Node.left, mini, Node.val-1) and self.isBST(Node.right, Node.val+1, maxi))
+    
+    def maxProfit(self, prices: List[int]) -> int:
+        minprice = 1000000000
+        max_val = 0
+        for i in range(len(prices)):
+            #if you get 10 nums 10,9,8..0 your always selling at a loss
+            if prices[i] < minprice:
+                minprice = prices[i]
+            else:
+                #sell if it makes you more money, dont otherwise 
+                max_val = max(max_val,prices[i] - minprice)
+        return max_val
