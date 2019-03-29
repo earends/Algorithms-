@@ -454,3 +454,51 @@ class Solution:
                 #sell if it makes you more money, dont otherwise 
                 max_val = max(max_val,prices[i] - minprice)
         return max_val
+    
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList or not endWord or not beginWord or not wordList:
+            return 0 
+        #do the preprocessing 
+        all_combos = {}
+        l = len(beginWord)
+        for i in range(len(wordList)):
+            for j in range(l):
+                temp = wordList[i][:j] + "*" + wordList[i][j+1:]
+                if temp in all_combos:
+                    all_combos[temp].append(wordList[i])
+                else:
+                    all_combos[temp] = [wordList[i]]
+        
+        
+        q = [(beginWord,1)]
+        #keep visited to prevent cycles
+        visited = {beginWord:True}
+        #while the queue is not empty, empty means no match 
+        while q:
+            #pop the current word
+            t = q.pop(0)
+            #split the word and len 
+            
+            tw = t[0]
+            tlen = t[1]
+            #find transformation of popped word
+            for a in range(l):
+                tempForm = tw[:a] + "*" + tw[a+1:]
+                
+                #for each word that is found as a combo
+                if tempForm in all_combos:
+                    #for each found matching word
+                    for w in all_combos[tempForm]:
+                        #if matching word is endWord
+                        if w == endWord:
+                            return tlen + 1
+                        #if matchingWord has not been visited yet
+                        #append the visited word to the queue
+                        if w not in visited:
+                            visited[w] = True
+                            q.append((w,tlen+1))
+                    #clear the dictionary 
+                    all_combos[tempForm] = []
+
+                
+        return 0 
