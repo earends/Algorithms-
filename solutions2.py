@@ -1,4 +1,12 @@
 class Solution(object):
+    '''
+    zigzag converter
+    PAYPALISHIRING , NUMROWS = 3
+    P   A   H   N
+    A P L S I I G
+    Y   I   R
+    RETURN PAHNAPLSIIGYIR
+    '''
     def convert(self, s, numRows):
         """
         :type s: str
@@ -32,4 +40,31 @@ class Solution(object):
             ans = ans + ''.join(ans_arr[i])
             
         return ans
+    '''
+    reverse integer
+    '''
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        
+        #convert to string
+        str_num = str(x)
+        negative = False
+        l = 0
+        if str_num[0] == '-':
+            negative = True
+            l = len(str_num) - 1
+            str_num = str_num[1:]
+        else:
+            l = len(str_num)
+        str_num = str_num[::-1]
+        if int(str_num) > (2**31) - 1:
+            return 0 
+        else:
+            if negative:
+                return int(str_num) * -1
+            else:
+                return int(str_num)
                     
