@@ -67,4 +67,18 @@ class Solution(object):
                 return int(str_num) * -1
             else:
                 return int(str_num)
+            
+  def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        str_x = str(x)
+        reverse_x = str_x[::-1]
+        l = len(str_x) // 2
+        for i in range(l):
+            if str_x[i] != reverse_x[i]:
+                return False
+            
+        return True
                     
