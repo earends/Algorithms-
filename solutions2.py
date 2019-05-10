@@ -81,4 +81,18 @@ class Solution(object):
                 return False
             
         return True
+    
+   #permutations
+    def permute(self, nums):
+        results = []
+        self.permuteRec([], nums, results)
+        return results
+        
+    def permuteRec(self, current, remaining, results):
+        if len(remaining) == 0: 
+            results.append(current)   
+        else:
+            for i in remaining:
+                new_remaining = [x for x in remaining if x != i]
+                self.permuteRec(current + [i], new_remaining, results)
                     
